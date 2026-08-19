@@ -586,7 +586,7 @@ class _CustomerSection extends StatelessWidget {
             )
           else ...[
             DropdownButtonFormField<int>(
-              initialValue: selectedIndex >= 0 ? selectedIndex : null,
+              value: selectedIndex >= 0 ? selectedIndex : null,
               items: [
                 for (var index = 0; index < stores.length; index++)
                   DropdownMenuItem(
