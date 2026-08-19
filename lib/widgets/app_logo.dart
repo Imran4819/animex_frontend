@@ -67,42 +67,30 @@ class _LogoMark extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        gradient: AppGradients.brand,
-        borderRadius: BorderRadius.circular(size * 0.28),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(size * 0.22),
         boxShadow: const [
           BoxShadow(
             color: AppColors.shadow,
-            blurRadius: 24,
-            offset: Offset(0, 14),
+            blurRadius: 16,
+            offset: Offset(0, 8),
           ),
         ],
       ),
-      child: Stack(
-        children: [
-          Positioned(
-            right: 10,
-            top: 10,
-            child: Container(
-              width: size * 0.22,
-              height: size * 0.22,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.orange,
-              ),
-            ),
-          ),
-          Center(
-            child: Text(
-              'AN',
-              style: GoogleFonts.poppins(
-                color: Colors.white,
-                fontWeight: FontWeight.w800,
-                fontSize: size * 0.32,
-                letterSpacing: 1,
-              ),
-            ),
-          ),
-        ],
+      padding: EdgeInsets.all(size * 0.08),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(size * 0.14),
+        child: Image.asset(
+          'assets/images/logo.png',
+          fit: BoxFit.contain,
+          errorBuilder: (context, error, stackTrace) {
+            return Icon(
+              Icons.pets_rounded,
+              size: size * 0.5,
+              color: AppColors.navy,
+            );
+          },
+        ),
       ),
     );
   }
