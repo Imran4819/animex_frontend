@@ -902,7 +902,7 @@ class InfoTile extends StatelessWidget {
             ],
           ),
         ),
-        ?trailing,
+        if (trailing != null) trailing!,
       ],
     );
   }

@@ -173,9 +173,7 @@ class _CreateBillScreenState extends ConsumerState<CreateBillScreen> {
 
   double get _taxable => (_subtotal - _discount).clamp(0, _subtotal).toDouble();
 
-  double get _gst => _taxable * 0.05;
-
-  double get _grandTotal => _taxable + _gst;
+  double get _grandTotal => _taxable;
 
   void _addProduct(ProductItem product) {
     final index = _selected.indexWhere((item) => item.product.name == product.name);
@@ -410,8 +408,6 @@ class _CreateBillScreenState extends ConsumerState<CreateBillScreen> {
                           _SummaryRow(label: 'Subtotal', value: formatCurrency(_subtotal)),
                           const SizedBox(height: 10),
                           _SummaryRow(label: 'Discount', value: '- ${formatCurrency(_discount)}'),
-                          const SizedBox(height: 10),
-                          _SummaryRow(label: 'GST (5%)', value: formatCurrency(_gst)),
                           const Divider(height: 28),
                           _SummaryRow(
                             label: 'Grand Total',
@@ -586,7 +582,7 @@ class _CustomerSection extends StatelessWidget {
             )
           else ...[
             DropdownButtonFormField<int>(
-              initialValue: selectedIndex >= 0 ? selectedIndex : null,
+              value: selectedIndex >= 0 ? selectedIndex : null,
               items: [
                 for (var index = 0; index < stores.length; index++)
                   DropdownMenuItem(

@@ -141,12 +141,10 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
           );
           return;
         }
-        await SharePlus.instance.share(
-          ShareParams(
-            files: [XFile(path)],
-            subject: 'ANIMEX Invoice PDF',
-            text: 'Here is your ANIMEX supply invoice.',
-          ),
+        await Share.shareXFiles(
+          [XFile(path)],
+          subject: 'ANIMEX Invoice PDF',
+          text: 'Here is your ANIMEX supply invoice.',
         );
       }
     } catch (e) {
