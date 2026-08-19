@@ -68,6 +68,14 @@ class ApiService {
     return 0.0;
   }
 
+  int? _toInt(dynamic val) {
+    if (val == null) return null;
+    if (val is int) return val;
+    if (val is num) return val.toInt();
+    if (val is String) return int.tryParse(val);
+    return null;
+  }
+
   // --- PRODUCT CATEGORIES ---
 
   Future<List<Map<String, dynamic>>> getCategories() async {
@@ -336,6 +344,8 @@ class ApiService {
         list.add(BillRecord(
           id: m['id'] as String?,
           invoiceNumber: m['invoice_number'] as String? ?? '',
+          companyInvoiceNumber: _toInt(m['company_invoice_number']),
+          globalBillId: _toInt(m['global_bill_id']),
           storeName: storeName,
           medicalStoreId: storeId,
           date: m['date'] != null ? DateTime.tryParse(m['date'] as String) ?? DateTime.now() : DateTime.now(),
@@ -384,6 +394,8 @@ class ApiService {
       return BillRecord(
         id: data['id'] as String?,
         invoiceNumber: data['invoice_number'] as String? ?? '',
+        companyInvoiceNumber: _toInt(data['company_invoice_number']),
+        globalBillId: _toInt(data['global_bill_id']),
         storeName: '', // Will be matched by callers
         medicalStoreId: medicalStoreId,
         date: data['date'] != null ? DateTime.tryParse(data['date'] as String) ?? date : date,

@@ -628,7 +628,7 @@ class BillCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      bill.invoiceNumber,
+                      bill.globalBillId != null ? '#${bill.globalBillId}' : bill.invoiceNumber,
                       style: GoogleFonts.poppins(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,

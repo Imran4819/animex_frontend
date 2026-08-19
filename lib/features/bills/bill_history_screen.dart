@@ -88,10 +88,11 @@ class _BillHistoryScreenState extends ConsumerState<BillHistoryScreen> {
   }
 
   Future<void> _deleteInvoice(BillRecord bill) async {
+    final displayId = bill.globalBillId != null ? '#${bill.globalBillId}' : bill.invoiceNumber;
     final ok = await showConfirmDialog(
       context,
       title: 'Delete invoice',
-      message: 'Are you sure you want to delete ${bill.invoiceNumber}?',
+      message: 'Are you sure you want to delete $displayId?',
       confirmLabel: 'Delete',
     );
     if (ok == true) {
@@ -162,9 +163,10 @@ class _BillHistoryScreenState extends ConsumerState<BillHistoryScreen> {
 
     if (query.isNotEmpty) {
       bills = bills.where((bill) {
-        return bill.invoiceNumber.toLowerCase().contains(query) ||
-            bill.storeName.toLowerCase().contains(query) ||
-            bill.paymentType.toLowerCase().contains(query);
+        final invStr = (bill.globalBillId != null) ? '#${bill.globalBillId}' : bill.invoiceNumber;
+        return invStr.toLowerCase().contains(query) ||
+        bill.storeName.toLowerCase().contains(query) ||
+        bill.paymentType.toLowerCase().contains(query);
       }).toList();
     }
 
