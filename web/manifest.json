@@ -1,6 +1,6 @@
 {
-    "name": "animex_billing",
-    "short_name": "animex_billing",
+    "name": "Animex_billing",
+    "short_name": "Animex_billing",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
