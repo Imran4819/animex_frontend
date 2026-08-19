@@ -223,7 +223,7 @@ class _AddProductScreenState extends ConsumerState<AddProductScreen> {
                             ),
                             field(
                               DropdownButtonFormField<String>(
-                                initialValue: _selectedCategoryId,
+                                value: _selectedCategoryId,
                                 decoration: const InputDecoration(
                                   labelText: 'Category',
                                   prefixIcon: Icon(Icons.category_rounded),
@@ -243,7 +243,7 @@ class _AddProductScreenState extends ConsumerState<AddProductScreen> {
                             ),
                             field(
                               DropdownButtonFormField<String>(
-                                initialValue: _unit,
+                                value: _unit,
                                 decoration: const InputDecoration(
                                   labelText: 'Unit',
                                   prefixIcon: Icon(Icons.straighten_rounded),

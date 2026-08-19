@@ -55,12 +55,10 @@ class _InvoicePreviewScreenState extends ConsumerState<InvoicePreviewScreen> {
         return;
       }
 
-      await SharePlus.instance.share(
-        ShareParams(
-          files: [XFile(path)],
-          subject: 'ANIMEX Invoice PDF',
-          text: 'Here is your ANIMEX supply invoice.',
-        ),
+      await Share.shareXFiles(
+        [XFile(path)],
+        subject: 'ANIMEX Invoice PDF',
+        text: 'Here is your ANIMEX supply invoice.',
       );
     } catch (e) {
       setState(() => _isDownloading = false);
@@ -126,7 +124,6 @@ class _InvoicePreviewScreenState extends ConsumerState<InvoicePreviewScreen> {
     final double subtotal;
     final double discount;
     final double taxable;
-    final double gst;
     final double grandTotal;
 
     if (widget.bill != null) {
@@ -134,13 +131,11 @@ class _InvoicePreviewScreenState extends ConsumerState<InvoicePreviewScreen> {
       discount = widget.bill!.discount;
       subtotal = lineItems.fold<double>(0, (sum, item) => sum + item.lineTotal);
       taxable = (subtotal - discount).clamp(0, subtotal).toDouble();
-      gst = taxable * 0.05;
     } else {
       subtotal = lineItems.fold<double>(0, (sum, item) => sum + item.lineTotal);
       discount = 450.0;
       taxable = (subtotal - discount).clamp(0, subtotal).toDouble();
-      gst = taxable * 0.05;
-      grandTotal = taxable + gst;
+      grandTotal = taxable;
     }
 
     final String? invoiceId = invoice.id;
@@ -307,8 +302,6 @@ class _InvoicePreviewScreenState extends ConsumerState<InvoicePreviewScreen> {
                                     _SummaryLine(label: 'Subtotal', value: formatCurrency(subtotal)),
                                     const SizedBox(height: 8),
                                     _SummaryLine(label: 'Discount', value: '- ${formatCurrency(discount)}'),
-                                    const SizedBox(height: 8),
-                                    _SummaryLine(label: 'GST (5%)', value: formatCurrency(gst)),
                                     const Divider(height: 28),
                                     _SummaryLine(
                                       label: 'Grand Total',
