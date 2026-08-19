@@ -235,7 +235,9 @@ class _InvoicePreviewScreenState extends ConsumerState<InvoicePreviewScreen> {
                                   child: _MetaPanel(
                                     title: 'Invoice Details',
                                     lines: [
-                                      invoice.invoiceNumber,
+                                      invoice.companyInvoiceNumber != null
+                                          ? '#${invoice.companyInvoiceNumber}'
+                                          : invoice.invoiceNumber,
                                       formatDate(invoice.date),
                                       'Payment: ${invoice.paymentType}',
                                     ],

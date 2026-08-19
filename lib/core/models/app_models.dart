@@ -113,6 +113,8 @@ class BillRecord {
   const BillRecord({
     this.id,
     required this.invoiceNumber,
+    this.companyInvoiceNumber,
+    this.globalBillId,
     required this.storeName,
     this.medicalStoreId,
     required this.date,
@@ -128,6 +130,8 @@ class BillRecord {
 
   final String? id;
   final String invoiceNumber;
+  final int? companyInvoiceNumber;
+  final int? globalBillId;
   final String storeName;
   final String? medicalStoreId;
   final DateTime date;

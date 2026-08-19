@@ -128,12 +128,16 @@ class _CreateBillScreenState extends ConsumerState<CreateBillScreen> {
         items: itemsPayload,
       );
 
-      debugPrint('ANIMEX DEBUG: Invoice created successfully. Invoice Number: ${createdInvoice.invoiceNumber}');
+      final displayId = createdInvoice.companyInvoiceNumber != null
+          ? '#${createdInvoice.companyInvoiceNumber}'
+          : createdInvoice.invoiceNumber;
+
+      debugPrint('ANIMEX DEBUG: Invoice created successfully. Invoice: $displayId');
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Invoice ${createdInvoice.invoiceNumber} created successfully!'),
+            content: Text('Invoice $displayId created successfully!'),
             backgroundColor: const Color(0xFF16A34A),
           ),
         );
